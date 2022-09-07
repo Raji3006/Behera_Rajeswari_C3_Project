@@ -68,6 +68,17 @@ public class Restaurant {
     }
 
     public int getOrderPrice(List<String> itemNames){
-        return 0;
+        int orderPrice =0;
+        List<Item> items = this.getMenu();
+        Map<String,Item> itemMap = new HashMap<>();
+        for(Item item: items) {
+            itemMap.put(item.getName(),item);
+        }
+        for(String itemName: itemNames) {
+            if(itemMap.containsKey(itemName)) {
+                orderPrice += itemMap.get(itemName).getPrice();
+            }
+        }
+        return orderPrice;
     }
 }
